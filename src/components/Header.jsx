@@ -1,17 +1,19 @@
 // context
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 // next link
 import Link from "next/link";
 
-// demo categories
-const categories = [
-  { name: "Патувања", slug: "Bitola is a nice city" },
-  { name: "Храна", slug: "Ohrid has a natural lake" },
-  { name: "Планинарење", slug: "Ohrid has a natural lake" },
-];
+// categories graphql data
+import { getCategories } from "@/services";
 
 const Header = () => {
+  const [categories, setCategories] = useState([]);
+
+  // fetching data from graphCMS
+  useEffect(() => {
+    getCategories().then((newCategories) => setCategories(newCategories));
+  }, []);
   return (
     <div className="container mx-auto px-10 mb-8 text-gray-800">
       <div className="border-b w-full inline-block border-purple-800 py-8">

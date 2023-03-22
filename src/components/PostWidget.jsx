@@ -7,6 +7,7 @@ import moment from "moment";
 import Link from "next/link";
 import { getRecentPosts, getSimmilarPosts } from "@/services";
 
+// post widget graphql data
 const PostWidget = ({ categories, slug }) => {
   const [relatedPosts, setRelatedPosts] = useState([]);
 
