@@ -29,13 +29,6 @@ export default function Home({ posts }) {
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
             <PostWidget />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui
-              dolor, hic, debitis at et voluptatum sapiente, quae pariatur nihil
-              consectetur quod molestias dolorum explicabo ad dolore ea error
-              cum aut corrupti maxime rem harum quis excepturi fugiat? Nobis,
-              nisi! Odio.
-            </p>
             <Categories />
           </div>
         </div>
