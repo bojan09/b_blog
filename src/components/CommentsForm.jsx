@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 
+// comments data from services
+import { submitComment } from "@/services";
+
 const CommentsForm = ({ slug }) => {
   // states
   const [error, setError] = useState(false);
@@ -11,6 +14,11 @@ const CommentsForm = ({ slug }) => {
   const nameEl = useRef();
   const emailEl = useRef();
   const storeDataEl = useRef();
+
+  useEffect(() => {
+    nameEl.current.value = window.localStorage.getItem("name");
+    emailEl.current.value = window.localStorage.getItem("email");
+  }, []);
 
   // Comment Submit Button
   const handleCommentSubbission = () => {
@@ -33,13 +41,21 @@ const CommentsForm = ({ slug }) => {
       slug,
     };
 
+    // If user wants his data to be stored, then we add it to localStorage. If not we don't
     if (storeData) {
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
+      window.localStorage.setItem("name", name);
+      window.localStorage.setItem("email", email);
     } else {
-      localStorage.removeItem("name", name);
-      localStorage.removeItem("email", email);
+      window.localStorage.removeItem("name", name);
+      window.localStorage.removeItem("email", email);
     }
+
+    submitComment(commentObj).then((res) => {
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 2500);
+    });
   };
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
@@ -103,12 +119,12 @@ const CommentsForm = ({ slug }) => {
           className="transition duration-500 ease hover:bg-indigo-900 inline-blog bg-pink-600 text-lg rounded-full text-white px-8 py-3 cursor-pointer"
         >
           Постирај коментар
-          {showSuccessMessage && (
-            <span className="text-xl float-right font-semibold mt-3 text-green-500">
-              Comment subbmitted for review.
-            </span>
-          )}
         </button>
+        {showSuccessMessage && (
+          <span className="text-xl float-right font-semibold mt-3 text-indigo-900 bg-green-300 opacity-70 p-2 rounded-md">
+            Comment submitted for review
+          </span>
+        )}
       </div>
     </div>
   );
