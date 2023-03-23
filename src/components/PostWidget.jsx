@@ -5,7 +5,7 @@ import moment from "moment";
 
 // next link
 import Link from "next/link";
-import { getRecentPosts, getSimmilarPosts } from "@/services";
+import { getRecentPosts, getSimilarPosts } from "@/services";
 
 // post widget graphql data
 const PostWidget = ({ categories, slug }) => {
@@ -13,15 +13,13 @@ const PostWidget = ({ categories, slug }) => {
 
   useEffect(() => {
     if (slug) {
-      getSimmilarPosts(category, slug).then((result) =>
+      getSimilarPosts(categories, slug).then((result) =>
         setRelatedPosts(result)
       );
     } else {
       getRecentPosts().then((result) => setRelatedPosts(result));
     }
   }, [slug]);
-
-  console.log(relatedPosts);
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 mb-8">
