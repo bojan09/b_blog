@@ -115,7 +115,7 @@ const PostDetail = ({ post }) => {
           </div>
         </div>
         {/* Post Title */}
-        <h1 className="mb-3 text-3xl font-semibold">{post.title}</h1>
+        <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
 
         {/* Post Content */}
         {post.content.raw.children.map((typeObj, index) => {
