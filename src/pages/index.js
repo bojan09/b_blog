@@ -3,6 +3,8 @@ import Head from "next/head";
 // components
 import { PostCard, PostWidget, Categories } from "../components";
 
+import { FeaturedPosts } from "../sections";
+
 // import posts from graphql services
 import { getPosts } from "@/services";
 
@@ -15,6 +17,8 @@ export default function Home({ posts }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* Featured Posts Carousel */}
+      <FeaturedPosts />
 
       {/* Grid container */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
