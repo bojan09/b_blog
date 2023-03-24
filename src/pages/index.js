@@ -21,7 +21,7 @@ export default function Home({ posts }) {
         {/* Posts container */}
         <div className="lg:col-span-8 col-span-1">
           {posts.map((post, i) => (
-            <PostCard post={post.node} key={post.title} />
+            <PostCard post={post.node} key={i} />
           ))}
         </div>
 
